@@ -49,3 +49,11 @@ main {
   border: 1px solid var(--color-border);
   margin-bottom: 10px;
 }
+
+/* Завершённые задачи с зачёркнутым текстом */
+.task-item.done .task-text {
+  text-decoration: line-through;
+  text-decoration-color: var(--color-success);
+  text-decoration-thickness: 2px;
+  color: #666b73
+}

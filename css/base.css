@@ -1,26 +1,26 @@
 /* --- БАЗА ---- */
 /* Светлая тема */
 :root {
-  --color-bg: #0F1117;
-  --color-text: #F3F4F6;
-  --color-primary: #3B82F6;
-  --color-accent: #8B5CF6;
-  --color-success: #10B981;
-  --color-error: #EF4444;
-  --color-card: #1C1F26;
-  --color-border: #1F2937;
+  --color-bg: #1d1c22;
+  --color-text: #b3b1bb;
+  --color-primary: #2f62ff;
+  --color-accent: #7a60fd;
+  --color-success: #56d8a2;
+  --color-error: #ef4e34;
+  --color-card: #1c1a26;
+  --color-border: #2a2845;  
 }
 
 /* Тёмная тема */
 [data-theme="light"] {
   --color-bg: #F9FAFB;
   --color-text: #1E1E1E;
-  --color-primary: #3B82F6;
-  --color-accent: #8B5CF6;
-  --color-success: #10B981;
-  --color-error: #EF4444;
-  --color-card: #FFFFFF;
-  --color-border: #D1D5DB;
+  --color-primary: #2f62ff;
+  --color-accent: #7a60fd;
+  --color-success: #56d8a2;
+  --color-error: #ef4e34;
+  --color-card: #e7eaf0;
+  --color-border: #ccd1d7;
 }
 
 /* --- Общие стили ---- */
@@ -35,7 +35,7 @@ body {
 /* --- Кнопки ---- */
 button {
   background-color: var(--color-primary);
-  color: white;
+  color: rgb(208, 208, 208);
   border: none;
   border-radius: 6px;
   padding: 10px 16px;
