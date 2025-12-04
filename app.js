@@ -68,22 +68,15 @@ function startEdit(id) {
 
   textNode.replaceWith(inputEl);
   li.classList.add('editing');
-  li.querySelector('.edit-btn').textContent = 'Сохранить';
-
+  li.querySelector('.edit-btn').innerHTML = '<img src="images/floppy.svg" alt="Сохранить" width="20" height="20">';
   inputEl.focus();
 
   //обработчики событий для сохранения или отмены редактирования
   inputEl.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      saveEdit(id);
-    }
-    if(e.key === 'Escape') {
-      cancelEdit(id);
-    }
-  })
-  inputEl.addEventListener('blur', () => {
-    saveEdit(id);
-  })
+    if (e.key === 'Enter') saveEdit(id);    
+    if(e.key === 'Escape') cancelEdit(id);
+  });
+  inputEl.addEventListener('blur', () => saveEdit(id));
 }
 
 
@@ -99,12 +92,11 @@ function saveEdit(id) {
     return;
   }
   const task = tasks.find(task => task.id === id);
-  if(task) {
-    task.text = newText;
-  }
+  if(task) task.text = newText;
 
   const editBtn = li.querySelector('.edit-btn');
-  if(editBtn) editBtn.textContent = 'Изменить';
+  if(editBtn) editBtn.innerHTML = '<img src="images/edit.svg" alt="Изменить" width="20" height="20">';
+
   li.classList.remove('editing');
 
   saveToLocalStorage();
@@ -136,10 +128,12 @@ function render() {
     const editBtn = document.createElement('button');
     editBtn.textContent = 'Изменить';
     editBtn.className = 'edit-btn';
+    editBtn.innerHTML = '<img src="images/edit.svg" alt="Изменить" width="20" height="20">';
 
     const delBtn = document.createElement('button');
     delBtn.textContent = 'Удалить';
     delBtn.className = 'del-btn';
+    delBtn.innerHTML = '<img src="images/delete.svg" alt="Удалить" width="20" height="20">';
 
     li.append(checkbox, text, editBtn, delBtn);
     taskConteiner.appendChild(li);
@@ -165,18 +159,22 @@ inputTask.addEventListener('keydown', (e) => {
 
 themeToggle.addEventListener('click', () => {
   const html = document.documentElement;
+  const icon = themeToggle.querySelector('img');
+
   if(html.getAttribute('data-theme') === 'light') {
     html.removeAttribute('data-theme');
+    icon.src = 'images/moon.svg';
   }else {
     html.setAttribute('data-theme', 'light');
+    icon.src = 'images/sun.svg';
   }
 });
 
 //делегирование событий для кнопок изменения и удаления
 taskConteiner.addEventListener('click', (e) => {
-  const btn = e.target;
-  const li = btn.closest('li');
-  if (!li) return;
+  const btn = e.target.closest('button');
+  const li = e.target.closest('li');
+  if (!li || !btn) return;
   const id = Number(li.dataset.id);
 
   if(btn.classList.contains('del-btn')) {

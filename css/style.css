@@ -53,7 +53,52 @@ main {
 /* Завершённые задачи с зачёркнутым текстом */
 .task-item.done .task-text {
   text-decoration: line-through;
-  text-decoration-color: var(--color-success);
+  text-decoration-color: var(--color-primary);
   text-decoration-thickness: 2px;
   color: #666b73
 }
+
+.del-btn  img,
+.edit-btn img {
+  filter: invert(1) sepia(1) saturate(5) hue-rotate(180deg);
+}
+
+.del-btn {
+  background-color: var(--color-error);
+}
+
+img {
+  filter: invert(1) sepia(1) saturate(1) hue-rotate(100deg);
+}
+
+.task-item input[type="checkbox"] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--color-primary);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.task-item input[type="checkbox"]:checked {
+  background-color: var(--color-primary);
+  position: relative;
+}
+
+.task-item input[type="checkbox"]:checked::after {
+  content: "✔";
+  color: white;
+  font-size: 18px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  transition: opacity 0.2s ease;
+}
+
+.task-text {
+  text-align: left;
+  word-break: break-word;
+  padding: 0 10px 0 15px;
+}
+
