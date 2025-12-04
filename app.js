@@ -163,7 +163,7 @@ themeToggle.addEventListener('click', () => {
 
   if(html.getAttribute('data-theme') === 'light') {
     html.removeAttribute('data-theme');
-    icon.src = 'images/moon.svg';
+    icon.src = 'images/moon-w.svg';
   }else {
     html.setAttribute('data-theme', 'light');
     icon.src = 'images/sun.svg';
