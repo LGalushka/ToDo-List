@@ -1,6 +1,6 @@
 let tasks = [];
 
-const makeID = () => Date.now()
+const makeID = () => Date.now() + Math.random();
 
 const inputTask = document.getElementById('inputTask');
 const addBtn = document.getElementById('addBtn');
@@ -152,11 +152,23 @@ addBtn.addEventListener('click', () => {
   if(!text) return;
   addTask(text);
   inputTask.value = '';
+  inputTask.focus();
   render();
 });
+
+//добавление задачи по нажатию Enter
 inputTask.addEventListener('keydown', (e) => {
   if (e.key === 'Enter') {
     addBtn.click();
+  }
+});
+
+themeToggle.addEventListener('click', () => {
+  const html = document.documentElement;
+  if(html.getAttribute('data-theme') === 'light') {
+    html.removeAttribute('data-theme');
+  }else {
+    html.setAttribute('data-theme', 'light');
   }
 });
 
