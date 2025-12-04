@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru" data-theme="dark">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,31 +11,37 @@
 
   <title>ToDo List</title>
 </head>
+
 <body>
   <div class="todo-container">
-    <h2>ToDo List</h2>
-    <button id="themeToggle">
-      <img src="images/moon.svg" alt="Сменить тему" width="20" height="20">  
-    </button>
-
-  <main>
-    <div  class="controls">
-      <input id="inputTask" type="text" placeholder="Введите задачу...">
-      <button id="addBtn">
-        <img src="images/plus.svg" alt="Добавить" width="20" height="20">
+    <header class="header">
+      <h2>ToDo List</h2>
+      <button id="themeToggle">
+        <img src="images/moon-w.svg" alt="Сменить тему" width="20" height="20">
       </button>
+    </header>
 
-      <select id="filterSelect">
-        <option value="all">Все</option>
-        <option value="done">Выполненные</option>
-        <option value="undone">Невыполненные</option>
-      </select>      
-    </div>
+    <main>
+      <div class="controls">
+        <input id="inputTask" type="text" placeholder="Введите задачу...">
+        <button id="addBtn">
+          <img src="images/plus-w.svg" alt="Добавить" width="20" height="20">
+        </button>
 
-    <ul id="taskConteiner"></ul>   
-  </main>
+
+        <select id="filterSelect" class="filterSelect">
+          <option value="all">Все</option>
+          <option value="done">Выполненные</option>
+          <option value="undone">Невыполненные</option>
+        </select>
+
+      </div>
+
+      <ul id="taskConteiner"></ul>
+    </main>
   </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>
