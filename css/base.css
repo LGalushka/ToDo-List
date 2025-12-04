@@ -1,0 +1,77 @@
+/* --- БАЗА ---- */
+:root {
+  --font-main: 'Inter', sans-serif;
+  --color-bg: #0F1117;
+  --color-text: #F3F4F6;
+  --color-primary: #3B82F6;
+  --color-accent: #8B5CF6;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-border: #1F2937;
+  --color-card: #1C1F26;
+}
+
+/* --- Общие стили ---- */
+body {
+  font-family: var(--font-main);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  margin: 0;
+  padding: 0;
+}
+
+/* --- Кнопки ---- */
+button {
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background-color: #2563EB;
+}
+
+/* --- Инпуты ---- */
+input, textarea {
+  background-color: var(--color-card);
+  color: var(--color-text);
+  border: 1px, solid var(--color-border);
+  border-radius: 6px;
+  padding: 10px;
+  transition: border 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+}
+
+/* --- Карточки ---- */
+.card {
+  background-color: var(--color-card);  
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  margin: 10px 0;
+}
+
+/* --- Иконки ---- */
+.icon {
+  width: 24px;
+  height: 24px;
+  stroke: var(--color-text);
+  fill: none;
+}
+
+/* --- Сообщения об ошибках и успехе ---- */
+.error {
+  color: var(--color-error);
+}
+
+.success {
+  color: var(--color-success);
+}
