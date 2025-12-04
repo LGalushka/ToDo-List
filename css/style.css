@@ -6,6 +6,26 @@ body{
   min-height: 100vh;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 32px;  
+  padding-left: 80px;
+}
+
+#themeToggle {
+  background: none;
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  padding: 5px;
+}
+
 .todo-container {
   width: 500px;
   padding: 20px;
@@ -67,9 +87,7 @@ main {
   background-color: var(--color-error);
 }
 
-img {
-  filter: invert(1) sepia(1) saturate(1) hue-rotate(100deg);
-}
+
 
 .task-item input[type="checkbox"] {
   appearance: none;
@@ -102,3 +120,75 @@ img {
   padding: 0 10px 0 15px;
 }
 
+/* --- стили для выпадающего списка ---- */
+.filter-dropdown-wrapper {
+  position: relative;
+  display: inline-block;
+  z-index: 10;
+}
+
+/* кнопка переключатель */
+.filter-toggle {
+  background-color: var(--color-primary);
+  caret-color: var(--color-text);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 43px;
+}
+
+.filter-toggle img {
+  transition: transform 0.3s ease;
+}
+
+/* --- контейнер опций (скрыт по умолчанию) ---- */
+.filter-options-list {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  min-width: 150px;
+  background-color: var(--color-card);
+  border-radius: 6px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+
+.filter-options-list.is-open {
+  display: block;
+}
+
+/* --- поворот стрелки при открытии ---- */
+.filter-toggle.is-open img {
+  transform: rotate(180deg);
+}
+
+/* --- отдельная опция ---- */
+.filter-option {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--color-text);
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.2s;
+}
+
+.filter-option:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.filter-option.active {
+  font-weight: bold;
+}

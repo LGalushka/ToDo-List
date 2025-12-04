@@ -1,4 +1,5 @@
 let tasks = [];
+let currentFilter = [];
 
 const makeID = () => Date.now() + Math.random();
 
@@ -6,6 +7,9 @@ const inputTask = document.getElementById('inputTask');
 const addBtn = document.getElementById('addBtn');
 const taskConteiner = document.getElementById('taskConteiner');
 const themeToggle = document.getElementById('themeToggle');
+const filterToggle = document.getElementById('filterToggle');
+const filterOptions = document.getElementById('filterOptions');
+const currentFilterText = document.getElementById('currentFilterText');
 
 //загрузка задач из localStorage при загрузке страницы
 function saveToLocalStorage() {
@@ -53,6 +57,12 @@ function cancelEdit(id) {
     li.classList.remove('editing');    
   }
   render();
+}
+
+// функция, которая переключает видимость списка
+function toogleFilterList() {
+  filterOptions.classList.toggle('is-open');
+  filterToggle.classList.toggle('is-open'); //для поворота стрелки
 }
 
 //начало редактирования задачи
@@ -107,7 +117,16 @@ function saveEdit(id) {
 //рендер задач
 function render() {
   taskConteiner.innerHTML = '';
-  tasks.forEach(task => {
+
+  // для отображения задач
+  let taskToRender = tasks;
+  if(currentFilter === 'done') {
+    taskToRender = tasks.filter(task => task.done);
+  }else if (currentFilter === 'undone') {
+    taskToRender = tasks.filter(task => !task.done);
+  }
+
+  taskToRender.forEach(task => {
     const li = document.createElement('li');
     li.dataset.id = task.id;
     li.className = 'task-item';
@@ -170,6 +189,46 @@ themeToggle.addEventListener('click', () => {
   }
 });
 
+// показать/скрыть список при клике
+filterToggle.addEventListener('click', (e) => {
+  e.stopPropagation();
+  toogleFilterList();
+})
+
+//делегирование событий для выбора опций
+filterOptions.addEventListener('click', (e) => {
+  const selectedBtn = e.target.closest('.filter-option');
+  if(!selectedBtn) return;
+
+  //получаем значение из data-атрибута (all,done,undone)
+  const newFilter = selectedBtn.dataset.filter;
+  if(newFilter === currentFilter) {
+    toogleFilterList();
+    return;
+  }
+  currentFilter = newFilter;
+  //обновляем фильтр
+  currentFilterText.textContent = selectedBtn.textContent.trim();
+  //обновляем активный класс
+  filterOptions.querySelectorAll('.filter-option').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  selectedBtn.classList.add('active')
+
+  //закрываем список и перерисовываем задачи
+  toogleFilterList();
+  render();
+});
+
+//закрытие списка при клике вне его
+document.addEventListener('click', (e) => {
+  if(!filterOptions.contains(e.target) && !filterToggle.contains(e.target)) {
+    if(filterOptions.classList.contains('is-open')) {
+      toogleFilterList();
+    }
+  }
+})
+
 //делегирование событий для кнопок изменения и удаления
 taskConteiner.addEventListener('click', (e) => {
   const btn = e.target.closest('button');
@@ -190,5 +249,7 @@ taskConteiner.addEventListener('click', (e) => {
   }
 });
 
+
+currentFilterText.textContent = document.querySelector('.filter-option[data-filter="all"]').textContent.trim();
 loadFromLocalStorage();
 render();

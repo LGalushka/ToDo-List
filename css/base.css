@@ -9,6 +9,7 @@
   --color-error: #ef4e34;
   --color-card: #1c1a26;
   --color-border: #2a2845;  
+  --color-primary-hover: #1e54c9;
 }
 
 /* Тёмная тема */
@@ -21,6 +22,7 @@
   --color-error: #ef4e34;
   --color-card: #e7eaf0;
   --color-border: #ccd1d7;
+  --color-primary-hover: #1e54c9
 }
 
 /* --- Общие стили ---- */
@@ -50,6 +52,7 @@ button:hover {
 .del-btn:hover {
   background-color: #a83322;
 } 
+
 
 /* --- Инпуты ---- */
 input, textarea {

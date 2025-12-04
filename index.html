@@ -29,11 +29,28 @@
         </button>
 
 
-        <select id="filterSelect" class="filterSelect">
-          <option value="all">Все</option>
-          <option value="done">Выполненные</option>
-          <option value="undone">Невыполненные</option>
-        </select>
+        <div class="filter-dropdown-wrapper">
+
+          <button id="filterToggle" class="filter-toggle">
+            <span id="currentFilterText">Все</span>
+            <img src="images/down.svg" alt="Стрелка вниз" width="16" height="16">
+          </button>
+
+          <div id="filterOptions" class="filter-options-list">
+            <button data-filter="all" class="filter-option active">Все</button>
+
+            <button data-filter="done" class="filter-option">
+              <img src="images/check-fat.svg" alt="Выполнено" class="option-icon" width="16" height="16">
+              Выполненные
+            </button>
+
+            <button data-filter="undone" class="filter-option">
+              <img src="images/trash.svg" alt="Невыполнено" class="option-icon" width="16" height="16">
+              Невыполненные
+            </button>
+
+          </div>
+        </div>
 
       </div>
 
