@@ -16,7 +16,7 @@
   <div class="todo-container">
     <header class="header">
       <h2>ToDo List</h2>
-      <button id="themeToggle">
+      <button id="themeToggle" aria-label="Сменить тему">
         <img src="images/moon-w.svg" alt="Сменить тему" width="20" height="20">
       </button>
     </header>
@@ -31,12 +31,12 @@
 
         <div class="filter-dropdown-wrapper">
 
-          <button id="filterToggle" class="filter-toggle">
+          <button id="filterToggle" class="filter-toggle" aria-haspopup="true" aria-expanded="false">
             <span id="currentFilterText">Все</span>
             <img src="images/down.svg" alt="Стрелка вниз" width="16" height="16">
           </button>
 
-          <div id="filterOptions" class="filter-options-list">
+          <div id="filterOptions" class="filter-options-list" hidden>
             <button data-filter="all" class="filter-option active">Все</button>
 
             <button data-filter="done" class="filter-option">
@@ -54,7 +54,7 @@
 
       </div>
 
-      <ul id="taskConteiner"></ul>
+      <ul id="taskContainer"></ul>
     </main>
   </div>
 

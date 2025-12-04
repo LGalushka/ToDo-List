@@ -27,7 +27,8 @@ body{
 }
 
 .todo-container {
-  width: 500px;
+  width: 100%;
+  max-width: 500px;
   padding: 20px;
   border-radius: 8px;
   background-color: var(--color-card);
@@ -50,15 +51,17 @@ main {
   margin-top: 20px;
 }
 
+
+
 /* Список без маркеров и базовых отступов */
-#taskConteiner {
+#taskContainer {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 /* Элемент списка — карточка */
-#taskConteiner li {
+#taskContainer li {
   display: grid;
   grid-template-columns: 24px 1fr auto auto; /* чекбокс, текст, edit, delete */
   align-items: center;
@@ -87,7 +90,14 @@ main {
   background-color: var(--color-error);
 }
 
+.task-item {
+  transition: all 0.3s ease;
+}
 
+.task-item.removing {
+  opacity: 0;
+  transform: translateX(-20px);
+}
 
 .task-item input[type="checkbox"] {
   appearance: none;
@@ -158,11 +168,16 @@ main {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   margin-top: 4px;
   overflow: hidden;
+  display: block;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease; 
 }
 
 
 .filter-options-list.is-open {
-  display: block;
+  max-height: 300px;
+  opacity: 1;
 }
 
 /* --- поворот стрелки при открытии ---- */
@@ -191,4 +206,11 @@ main {
 
 .filter-option.active {
   font-weight: bold;
+}
+
+
+/* Правило для Светлой темы */
+html[data-theme="light"] .filter-option img,
+html[data-theme="light"] #filterToggle img {
+    filter: invert(100%) hue-rotate(180deg);
 }

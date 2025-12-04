@@ -1,11 +1,11 @@
 let tasks = [];
-let currentFilter = [];
+let currentFilter = 'all';
 
 const makeID = () => Date.now() + Math.random();
 
 const inputTask = document.getElementById('inputTask');
 const addBtn = document.getElementById('addBtn');
-const taskConteiner = document.getElementById('taskConteiner');
+const taskContainer = document.getElementById('taskContainer');
 const themeToggle = document.getElementById('themeToggle');
 const filterToggle = document.getElementById('filterToggle');
 const filterOptions = document.getElementById('filterOptions');
@@ -34,9 +34,15 @@ function addTask(text) {
 
 //удаление задачи
 function deleteTask(id) {
-  tasks = tasks.filter(task => task.id !== id);
-  saveToLocalStorage();
-  render();
+  const li = taskContainer.querySelector(`li[data-id='${id}']`);
+  if(li) {
+    li.classList.add('removing');
+    setTimeout(() => {
+      tasks = tasks.filter(task => task.id !== id);
+      saveToLocalStorage();
+      render();
+    }, 300);
+  }
 }
 
 //изменение статуса задачи
@@ -50,7 +56,7 @@ function toggleDone(id) {
 }
 
 function cancelEdit(id) {
-  const li = taskConteiner.querySelector(`li[data-id='${id}']`);
+  const li = taskContainer.querySelector(`li[data-id='${id}']`);
   if(li) {
     const editBtn = li.querySelector('.edit-btn');
     if(editBtn) editBtn.textContent = 'Изменить';
@@ -60,14 +66,14 @@ function cancelEdit(id) {
 }
 
 // функция, которая переключает видимость списка
-function toogleFilterList() {
+function toggleFilterList() {
   filterOptions.classList.toggle('is-open');
   filterToggle.classList.toggle('is-open'); //для поворота стрелки
 }
 
 //начало редактирования задачи
 function startEdit(id) {
-  const li = taskConteiner.querySelector(`li[data-id='${id}']`);
+  const li = taskContainer.querySelector(`li[data-id='${id}']`);
   if(!li) return;
 
   const textNode = li.querySelector('.task-text');
@@ -91,7 +97,7 @@ function startEdit(id) {
 
 
 function saveEdit(id) {
-  const li = taskConteiner.querySelector(`li[data-id='${id}']`);
+  const li = taskContainer.querySelector(`li[data-id='${id}']`);
   if(!li) return;
 
   const inputEl = li.querySelector('.edit-input');
@@ -116,7 +122,7 @@ function saveEdit(id) {
 
 //рендер задач
 function render() {
-  taskConteiner.innerHTML = '';
+  taskContainer.innerHTML = '';
 
   // для отображения задач
   let taskToRender = tasks;
@@ -145,7 +151,6 @@ function render() {
     text.className = "task-text";
 
     const editBtn = document.createElement('button');
-    editBtn.textContent = 'Изменить';
     editBtn.className = 'edit-btn';
     editBtn.innerHTML = '<img src="images/edit.svg" alt="Изменить" width="20" height="20">';
 
@@ -155,7 +160,7 @@ function render() {
     delBtn.innerHTML = '<img src="images/delete.svg" alt="Удалить" width="20" height="20">';
 
     li.append(checkbox, text, editBtn, delBtn);
-    taskConteiner.appendChild(li);
+    taskContainer.appendChild(li);
   });  
 }
 
@@ -192,7 +197,7 @@ themeToggle.addEventListener('click', () => {
 // показать/скрыть список при клике
 filterToggle.addEventListener('click', (e) => {
   e.stopPropagation();
-  toogleFilterList();
+  toggleFilterList();
 })
 
 //делегирование событий для выбора опций
@@ -203,12 +208,12 @@ filterOptions.addEventListener('click', (e) => {
   //получаем значение из data-атрибута (all,done,undone)
   const newFilter = selectedBtn.dataset.filter;
   if(newFilter === currentFilter) {
-    toogleFilterList();
+    toggleFilterList();
     return;
   }
   currentFilter = newFilter;
   //обновляем фильтр
-  currentFilterText.textContent = selectedBtn.textContent.trim();
+  currentFilterText.textContent = selectedBtn.innerText.trim();
   //обновляем активный класс
   filterOptions.querySelectorAll('.filter-option').forEach(btn => {
     btn.classList.remove('active');
@@ -216,7 +221,7 @@ filterOptions.addEventListener('click', (e) => {
   selectedBtn.classList.add('active')
 
   //закрываем список и перерисовываем задачи
-  toogleFilterList();
+  toggleFilterList();
   render();
 });
 
@@ -224,13 +229,13 @@ filterOptions.addEventListener('click', (e) => {
 document.addEventListener('click', (e) => {
   if(!filterOptions.contains(e.target) && !filterToggle.contains(e.target)) {
     if(filterOptions.classList.contains('is-open')) {
-      toogleFilterList();
+      toggleFilterList();
     }
   }
 })
 
 //делегирование событий для кнопок изменения и удаления
-taskConteiner.addEventListener('click', (e) => {
+taskContainer.addEventListener('click', (e) => {
   const btn = e.target.closest('button');
   const li = e.target.closest('li');
   if (!li || !btn) return;

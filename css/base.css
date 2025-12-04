@@ -22,7 +22,7 @@
   --color-error: #ef4e34;
   --color-card: #e7eaf0;
   --color-border: #ccd1d7;
-  --color-primary-hover: #1e54c9
+  --color-primary-hover: #2054c4;
 }
 
 /* --- Общие стили ---- */
@@ -43,10 +43,11 @@ button {
   padding: 10px 16px;
   cursor: pointer;
   transition: background 0.3s ease;
+  transition: background-color 0.2s, opacity 0.2s;
 }
 
 button:hover {
-  background-color: #2563EB;
+  background-color: #194198;
 }
 
 .del-btn:hover {
