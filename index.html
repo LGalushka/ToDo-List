@@ -1,22 +1,30 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/style.css">
 
   <title>ToDo List</title>
 </head>
 <body>
-  <h2>ToDo list</h2>
+  <div class="todo-container">
+    <h2>ToDo List</h2>
 
   <main>
-    <input id="inputTask" type="text" placeholder="Введите задачу...">
-    <button id="addBtn">Добавить</button>
+    <div  class="controls">
+      <input id="inputTask" type="text" placeholder="Введите задачу...">
+      <button id="addBtn">Добавить</button>
+      <button id="themeToggle">Сменить тему</button>
+    </div>
 
-    <ul id="taskConteiner"></ul>
-    
+    <ul id="taskConteiner"></ul>   
   </main>
+  </div>
   
+  <script src="app.js"></script>
 </body>
 </html>

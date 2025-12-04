@@ -1,0 +1,51 @@
+body{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+}
+
+.todo-container {
+  width: 500px;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: var(--color-card);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ряд с инпутом и кнопками */
+.controls {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.controls input {
+  flex: 1;
+}
+
+main {
+  margin-top: 20px;
+}
+
+/* Список без маркеров и базовых отступов */
+#taskConteiner {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Элемент списка — карточка */
+#taskConteiner li {
+  display: grid;
+  grid-template-columns: 24px 1fr auto auto; /* чекбокс, текст, edit, delete */
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  margin-bottom: 10px;
+}

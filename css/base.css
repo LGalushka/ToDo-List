@@ -1,19 +1,31 @@
 /* --- БАЗА ---- */
+/* Светлая тема */
 :root {
-  --font-main: 'Inter', sans-serif;
   --color-bg: #0F1117;
   --color-text: #F3F4F6;
   --color-primary: #3B82F6;
   --color-accent: #8B5CF6;
   --color-success: #10B981;
   --color-error: #EF4444;
-  --color-border: #1F2937;
   --color-card: #1C1F26;
+  --color-border: #1F2937;
+}
+
+/* Тёмная тема */
+[data-theme="light"] {
+  --color-bg: #F9FAFB;
+  --color-text: #1E1E1E;
+  --color-primary: #3B82F6;
+  --color-accent: #8B5CF6;
+  --color-success: #10B981;
+  --color-error: #EF4444;
+  --color-card: #FFFFFF;
+  --color-border: #D1D5DB;
 }
 
 /* --- Общие стили ---- */
 body {
-  font-family: var(--font-main);
+  font-family: 'Inter', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-text);
   margin: 0;
@@ -52,7 +64,8 @@ input:focus, textarea:focus {
 
 /* --- Карточки ---- */
 .card {
-  background-color: var(--color-card);  
+  background-color: var(--color-card); 
+  border: 1px solid var(--color-border); 
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
