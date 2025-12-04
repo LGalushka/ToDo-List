@@ -7,12 +7,14 @@ const addBtn = document.getElementById('addBtn');
 const taskConteiner = document.getElementById('taskConteiner');
 const themeToggle = document.getElementById('themeToggle');
 
+//добавление задачи
 function addTask(text) {
   const task = { id: makeID(), text, done: false };
   tasks.push(task);
   render();
 }
 
+//удаление задачи
 function deleteTask(id) {
   tasks = tasks.filter(task => task.id !== id);
   render();
@@ -27,6 +29,7 @@ function toggleDone(id) {
   render();
 }
 
+//рендер задач
 function render() {
   taskConteiner.innerHTML = '';
   tasks.forEach(task => {
@@ -55,6 +58,7 @@ function render() {
   });  
 }
 
+//обработчики событий
 addBtn.addEventListener('click', () => {
   const text = inputTask.value.trim();
   if(!text) return;
