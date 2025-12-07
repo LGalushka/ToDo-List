@@ -1,7 +1,7 @@
 let tasks = [];
 let currentFilter = 'all';
 
-const makeID = () => Date.now() + Math.random();
+const makeID = () => String(Date.now() + Math.random());
 
 const inputTask = document.getElementById('inputTask');
 const addBtn = document.getElementById('addBtn');
@@ -11,15 +11,28 @@ const filterToggle = document.getElementById('filterToggle');
 const filterOptions = document.getElementById('filterOptions');
 const currentFilterText = document.getElementById('currentFilterText');
 
+const filterAllBtn = document.getElementById('filterAllBtn');
+const filterDoneBtn = document.getElementById('filterDoneBtn');
+const filterUndoneBtn = document.getElementById('filterUndoneBtn');
+
+
 //загрузка задач из localStorage при загрузке страницы
 function saveToLocalStorage() {
   localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function ensureStringIds(tasksArray) {
+  return tasksArray.map(task => {
+    task.id = String(task.id);
+    return task;
+  });
 }
 
 function loadFromLocalStorage() {
   const stored = localStorage.getItem('tasks');
   if (stored) {
     tasks = JSON.parse(stored);
+    tasks = ensureStringIds(tasks);
     render();
   }
 }
@@ -132,6 +145,8 @@ function render() {
     taskToRender = tasks.filter(task => !task.done);
   }
 
+
+
   taskToRender.forEach(task => {
     const li = document.createElement('li');
     li.dataset.id = task.id;
@@ -238,8 +253,9 @@ document.addEventListener('click', (e) => {
 taskContainer.addEventListener('click', (e) => {
   const btn = e.target.closest('button');
   const li = e.target.closest('li');
-  if (!li || !btn) return;
-  const id = Number(li.dataset.id);
+  if(!btn || !li) return;
+
+  const id = li.dataset.id;
 
   if(btn.classList.contains('del-btn')) {
     deleteTask(id);
@@ -254,6 +270,20 @@ taskContainer.addEventListener('click', (e) => {
   }
 });
 
+filterAllBtn.addEventListener('click', () => {
+  currentFilter = 'all';
+  render();
+});
+
+filterDoneBtn.addEventListener('click', () => {
+  currentFilter = 'done';
+  render();
+});
+
+filterUndoneBtn.addEventListener('click', () => {
+  currentFilter = 'undone';
+  render();
+});
 
 currentFilterText.textContent = document.querySelector('.filter-option[data-filter="all"]').textContent.trim();
 loadFromLocalStorage();

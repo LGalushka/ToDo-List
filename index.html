@@ -13,21 +13,35 @@
 </head>
 
 <body>
-  <div class="todo-container">
-    <header class="header">
+  <header class="header">
+    <div class="header-list">
+      <img class="logo" src="images/logo.png" alt="Логотип" width="60" height="60">
       <h2>ToDo List</h2>
-      <button id="themeToggle" aria-label="Сменить тему">
-        <img src="images/moon-w.svg" alt="Сменить тему" width="20" height="20">
-      </button>
-    </header>
 
-    <main>
+      <div class="filter-group">
+        <div id="filter">
+          <button id="filterAllBtn" data-filter="all">Все</button>
+          <button id="filterDoneBtn" data-filter="done">Выполненные</button>
+          <button id="filterUndoneBtn" data-filter="undone">Не выполненные</button>
+        </div>
+        <button id="themeToggle" aria-label="Сменить тему">
+          <img src="images/moon-w.svg" alt="Сменить тему" width="20" height="20">
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="todo-container">
+      <div class="wrapper">
+        <h3>Мои задачи</h3>
+      </div>
+
       <div class="controls">
         <input id="inputTask" type="text" placeholder="Введите задачу...">
         <button id="addBtn">
           <img src="images/plus-w.svg" alt="Добавить" width="20" height="20">
         </button>
-
 
         <div class="filter-dropdown-wrapper">
 
@@ -55,9 +69,13 @@
       </div>
 
       <ul id="taskContainer"></ul>
-    </main>
-  </div>
+    </div>
+  </main>
 
+  <footer class="footer">
+    <p class="quote"> "План в голове — это мечта. План здесь — это реальность."</p>
+    <span class="author">@2025 LGalushka</span>
+  </footer>
   <script src="app.js"></script>
 </body>
 

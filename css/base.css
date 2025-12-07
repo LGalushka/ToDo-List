@@ -1,28 +1,28 @@
 /* --- БАЗА ---- */
-/* Светлая тема */
+/* Тёмная тема (по умолчанию) */
 :root {
-  --color-bg: #1d1c22;
-  --color-text: #b3b1bb;
-  --color-primary: #2f62ff;
-  --color-accent: #7a60fd;
-  --color-success: #56d8a2;
-  --color-error: #ef4e34;
-  --color-card: #1c1a26;
-  --color-border: #2a2845;  
-  --color-primary-hover: #1e54c9;
+  --color-bg: #121212;
+  --color-text: #d7d7d7;
+  --color-primary: #3BBE98; /* Основной цвет */
+  --color-accent: #3BBE98;  /* Акцентный цвет */
+  --color-success: #4AD4B3; 
+  --color-error: #E85656;
+  --color-card: #181818;
+  --color-border: #2A2A2A;
+  --color-primary-hover: #267d64; /* Усиленный темный цвет при наведении */
 }
 
-/* Тёмная тема */
+/* Светлая тема */
 [data-theme="light"] {
-  --color-bg: #F9FAFB;
-  --color-text: #1E1E1E;
-  --color-primary: #2f62ff;
-  --color-accent: #7a60fd;
-  --color-success: #56d8a2;
-  --color-error: #ef4e34;
-  --color-card: #e7eaf0;
-  --color-border: #ccd1d7;
-  --color-primary-hover: #2054c4;
+  --color-bg: #FAF8F2;
+  --color-text: #272727;
+  --color-primary: #3BBE98;
+  --color-accent: #4AD4B3;
+  --color-success: #4AD4B3;
+  --color-error: #D64545;
+  --color-card: #FFFFFF;
+  --color-border: #E0D9C8;
+  --color-primary-hover: #2F9A7B; /* Усиленный темный цвет при наведении */
 }
 
 /* --- Общие стили ---- */
@@ -37,29 +37,27 @@ body {
 /* --- Кнопки ---- */
 button {
   background-color: var(--color-primary);
-  color: rgb(208, 208, 208);
+  color: #f3f3f3;
   border: none;
   border-radius: 6px;
   padding: 10px 16px;
   cursor: pointer;
-  transition: background 0.3s ease;
   transition: background-color 0.2s, opacity 0.2s;
 }
 
 button:hover {
-  background-color: #194198;
+  background-color: var(--color-primary-hover); /* Теперь используется более темный цвет */
 }
 
 .del-btn:hover {
-  background-color: #a83322;
-} 
-
+  background-color: #b23a2f; 
+}
 
 /* --- Инпуты ---- */
 input, textarea {
   background-color: var(--color-card);
   color: var(--color-text);
-  border: 1px, solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: 6px;
   padding: 10px;
   transition: border 0.3s ease;
@@ -72,8 +70,8 @@ input:focus, textarea:focus {
 
 /* --- Карточки ---- */
 .card {
-  background-color: var(--color-card); 
-  border: 1px solid var(--color-border); 
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   padding: 16px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -88,7 +86,7 @@ input:focus, textarea:focus {
   fill: none;
 }
 
-/* --- Сообщения об ошибках и успехе ---- */
+/* --- Сообщения ---- */
 .error {
   color: var(--color-error);
 }
